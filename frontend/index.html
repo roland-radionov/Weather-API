@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather API</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header class="header">
+        <a href="#">
+            <img src="./images/favicon.ico" alt="Weather Icon">
+        </a>
+        <h1 class="header__title">Weather API</h1>
+    </header>
+    <main class="weather">
+        <form action="" method="get" class="weather__form form">
+            <h2 class="form__title">Enter City Name</h2>
+            <div class="form__group">
+                <input class="form__input" id="city" type="text" name="city" placeholder="City Name" required>
+            </div>
+            <button class="form__submit" type="submit">Get Weather</button>
+        </form>
+        <div class="weather__result"></div>
+    </main>
+    <footer class="footer">
+        <p>&copy; 2026 Weather API. All rights reserved.</p>
+    </footer>
+    <script src="script.js" type="module"></script>
+</body>
+</html>

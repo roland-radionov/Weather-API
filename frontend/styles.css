@@ -1,0 +1,145 @@
+:root {
+    --bg-primary: #d2e5db;
+    --bg-main: #a0c8ce;
+    --bg-form: #338fba;
+    --text-primary: #024683;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Roboto", sans-serif;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    flex-grow: 0;
+    padding: 1rem 2rem;
+    height: 15vh;
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+}
+
+.header__title {
+    text-align: center;
+    flex-grow: 1;
+}
+
+.weather {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 4em;
+    min-height: 100vh;
+    background-color: var(--bg-main);
+}
+
+.form {
+    width: 100%;
+    max-width: 400px;
+    min-height: 250px;
+    max-height: 600px;
+    background-color: var(--bg-form);
+    border-radius: 15px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    padding: 2rem 1.5rem;
+}
+
+.form__title {
+    font-size: 1.5rem;
+    color: var(--text-primary);
+}
+
+.form__group {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1em;
+}
+
+.form__input {
+    background-color: rgb(244, 234, 234);
+    border: none;
+    border-radius: 20px;
+    padding: 1em 2em;
+}
+
+.form__input:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+.form__input::placeholder {
+    font-size: 1.2em;
+}
+
+.form__submit {
+    padding: 1em 2em;
+    border: none;
+    border-radius: 20px;
+    font-size: 1.2em;
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+}
+
+.form__submit:hover {
+    cursor: pointer;
+    background-color: var(--bg-main);
+}
+
+.weather__card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    max-width: 300px;
+    min-height: 250px;
+    max-height: 600px;
+
+    background-color: var(--bg-form);
+    border: none;
+    border-radius: 15px;
+    padding: 1.7rem 1.5rem;
+}
+
+.card__title {
+    font-size: 1.5rem;
+    color: var(--text-primary);
+    margin-bottom: 0.5em;
+}
+
+.card__info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.card__icon {
+    width: 125px;
+    height: 125px;
+}
+
+.card__temperature {
+    font-size: 1.5rem;
+}
+
+.card__footer {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.footer {
+    background-color: var(--bg-primary);
+    padding: 1rem 2rem;
+    color: var(--text-primary);
+}
