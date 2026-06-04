@@ -37,11 +37,14 @@ This is simple weather API. The idea was taken from roadmaps.sh.
 
    Create `.env` file in project root:  
    ```env
-   API_KEY=your_api_key
+   API_KEY="your_openweathermap_api_key"
    REDIS_URL="redis://localhost"
    ```
-   
+   Get your free API key from [OpenWeatherMap](https://openweathermap.org/api)
+   Sign up, confirm email, and copy the key from the "API keys" tab.
+
 6. **Launch the server**
+
    ```bash
    uvicorn main:app --reload
    ```
