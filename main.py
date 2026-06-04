@@ -4,22 +4,36 @@ from dotenv import load_dotenv
 from fastapi import FastAPI, HTTPException, status
 from fastapi.middleware.cors import CORSMiddleware
 
+from contextlib import asynccontextmanager
+from fastapi_cache import FastAPICache
+from fastapi_cache.backends.redis import RedisBackend
+from fastapi_cache.decorator import cache
+from redis import asyncio as aioredis
+
 load_dotenv()
 API_KEY = os.getenv("API_KEY")
 forecast_base_url = "https://api.openweathermap.org/data/2.5/forecast"
 geocoding_base_url = "https://api.openweathermap.org/geo/1.0/direct"
 
-app = FastAPI()
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    redis = aioredis.from_url(os.getenv("REDIS_URL"))
+    FastAPICache.init(RedisBackend(redis), prefix="weather-cache")
+    yield
+    await redis.close()
+
+app = FastAPI(lifespan=lifespan)
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://127.0.0.1:5500"],
+    allow_origins=["http://127.0.0.1:5500", "http://localhost:63342"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
 
 @app.get("/forecast")
+@cache(expire=600)
 def get_forecast(lat: float, lon: float) -> dict:
     url = f"{forecast_base_url}"
     params = {
@@ -65,6 +79,7 @@ def get_forecast(lat: float, lon: float) -> dict:
         )
 
 @app.get("/geocoords/{city_name}")
+@cache(expire=86400)
 def get_geocoords(city_name: str) -> dict:
     url = f"{geocoding_base_url}"
     params = {
